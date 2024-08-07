@@ -1,17 +1,31 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <router-view></router-view> <!-- This renders the matched component -->
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import axios from './plugins/axios';
 
 export default {
   name: 'App',
-  components: {
-    HelloWorld
+  data() {
+    return {
+      users: []
+    }
+  },
+  mounted() {
+    this.getUsers(); // Fetch users when the component is mounted
+  },
+  methods: {
+    async getUsers() {
+      try {
+        const response = await axios.get('/users'); // Adjust the endpoint if needed
+        this.users = response.data;
+      } catch (error) {
+        console.error('Error fetching users:', error);
+      }
+    },
   }
 }
 </script>
