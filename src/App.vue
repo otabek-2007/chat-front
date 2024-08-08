@@ -3,7 +3,6 @@
     <router-view></router-view> <!-- This renders the matched component -->
   </div>
 </template>
-
 <script>
 import axios from './plugins/axios';
 
